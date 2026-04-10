@@ -1,0 +1,72 @@
+.rio-vl {
+    pointer-events: auto;
+    display: flex;
+    overflow: hidden;
+    min-width: 0;
+    contain: strict;
+}
+
+.rio-vl-scroller {
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 5rem;
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    scrollbar-width: none;
+}
+
+.rio-vl-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+/* Opt-in thin scrollbar via showScrollbar state */
+.rio-vl-scroller.rio-vl-show-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+.rio-vl-scroller.rio-vl-show-scrollbar::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+}
+.rio-vl-scroller.rio-vl-show-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+.rio-vl-scroller.rio-vl-show-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rio-vl-sentinel {
+    /* In normal flow so it contributes to scrollHeight immediately.
+       Width 0 + no content = invisible but defines scroll height. */
+    width: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.rio-vl-scroller > .rio-child-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.rio-vl-snap .rio-vl-scroller {
+    scroll-snap-type: y mandatory;
+}
+
+.rio-vl-snap .rio-vl-scroller > .rio-child-wrapper {
+    scroll-snap-align: center;
+}
+
+/* Directional fade-in animations */
+@keyframes rio-vl-fade-up {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rio-vl-fade-down {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
