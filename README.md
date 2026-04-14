@@ -97,3 +97,13 @@ uv run rio run
 ```
 
 The demo shows 100k items with complex multi-component rows and live controls for all props, so that you can play with them and learn how it works.
+
+## Building Your Own Custom Components
+
+This package includes `HybridComponent` — a base class for writing custom
+Python+JS components for Rio. See **[docs/HYBRID_COMPONENTS_GUIDE.md](docs/HYBRID_COMPONENTS_GUIDE.md)** for a full
+tutorial on how to build your own components with custom JavaScript behavior.
+
+## License
+
+MIT
