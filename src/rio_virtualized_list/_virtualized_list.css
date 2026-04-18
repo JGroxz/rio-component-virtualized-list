@@ -52,6 +52,16 @@
     overflow: hidden;
 }
 
+/* Horizontal scroll mode: children size by content instead of viewport,
+   allowing overflow-x on the scroller to activate. Useful for log-style
+   content where long lines should scroll horizontally rather than wrap. */
+.rio-vl-hscroll .rio-vl-scroller > .rio-child-wrapper {
+    right: auto;
+    width: max-content;
+    min-width: 100%;
+    overflow: visible;
+}
+
 .rio-vl-snap .rio-vl-scroller {
     scroll-snap-type: y mandatory;
 }

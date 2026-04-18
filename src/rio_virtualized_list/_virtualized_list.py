@@ -31,6 +31,7 @@ class _VirtualizedList(HybridComponent):
     fade_duration_ms: int = _FADE_DURATION_MS
     stagger_ms: int = _STAGGER_MS
     show_scrollbar: bool = False
+    horizontal_scroll: bool = False
     on_scroll: rio.EventHandler[Jsonable] = None  # type: ignore[assignment]
     on_auto_follow_change: rio.EventHandler[Jsonable] = None  # type: ignore[assignment]
 
@@ -49,6 +50,7 @@ class _VirtualizedList(HybridComponent):
             "fadeDur": self.fade_duration_ms,
             "fadeStagger": self.stagger_ms,
             "showScrollbar": self.show_scrollbar,
+            "horizontalScroll": self.horizontal_scroll,
         }
 
     async def _on_message_(self, message: Jsonable, /) -> None:

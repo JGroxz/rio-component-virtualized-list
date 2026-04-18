@@ -82,6 +82,7 @@ The component uses a two-layer architecture:
 | `snap` | `bool` | `False` | Snap scrolling to row boundaries |
 | `auto_follow` | `bool` | `False` | Scroll to bottom on updates |
 | `show_scrollbar` | `bool` | `False` | Show thin scrollbar |
+| `horizontal_scroll` | `bool` | `False` | Allow rows wider than viewport to scroll horizontally instead of stretching |
 | `fade_duration_ms` | `int` | `110` | Fade-in animation duration (0 to disable) |
 | `stagger_ms` | `int` | `18` | Delay between successive fade-ins |
 | `scroll_to_top()` | method | — | Programmatically scroll to the top |

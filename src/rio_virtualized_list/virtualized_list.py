@@ -40,6 +40,10 @@ class VirtualizedList(rio.Component):
         snap: Snap scrolling to row boundaries.
         auto_follow: Scroll to bottom on updates (streaming/log mode).
         show_scrollbar: Show a thin scrollbar.
+        horizontal_scroll: Allow horizontal scrolling when rows are wider
+            than the viewport. Off by default — rows stretch to viewport
+            width. Turn on for log viewers, code views, wide tables where
+            content shouldn't wrap.
         fade_duration_ms: Fade-in animation duration (0 to disable).
         stagger_ms: Delay between successive fade-ins.
     """
@@ -51,6 +55,7 @@ class VirtualizedList(rio.Component):
     snap: bool = False
     auto_follow: bool = False
     show_scrollbar: bool = False
+    horizontal_scroll: bool = False
     fade_duration_ms: int = _FADE_DURATION_MS
     stagger_ms: int = _STAGGER_MS
 
@@ -101,6 +106,7 @@ class VirtualizedList(rio.Component):
             fade_duration_ms=self.fade_duration_ms,
             stagger_ms=self.stagger_ms,
             show_scrollbar=self.show_scrollbar,
+            horizontal_scroll=self.horizontal_scroll,
             on_scroll=self._handle_scroll,
             grow_x=True,
             grow_y=True,

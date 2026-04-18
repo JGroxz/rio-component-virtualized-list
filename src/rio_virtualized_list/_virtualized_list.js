@@ -10,6 +10,7 @@
 //   debounceMs       - number         (scroll throttle interval ms)
 //   fadeDur          - number         (fade animation ms, 0 = disabled)
 //   fadeStagger      - number         (stagger delay between items ms)
+//   horizontalScroll - boolean        (opt-in horizontal scroll for wide rows)
 //
 // Messages sent to Python:
 //   {type: 'scroll', start: number, end: number}
@@ -145,6 +146,11 @@ class _VirtualizedList {
         if (deltaState.showScrollbar !== undefined) {
             this._scroller.classList.toggle(
                 'rio-vl-show-scrollbar', deltaState.showScrollbar
+            );
+        }
+        if (deltaState.horizontalScroll !== undefined) {
+            this._el.classList.toggle(
+                'rio-vl-hscroll', deltaState.horizontalScroll
             );
         }
 
