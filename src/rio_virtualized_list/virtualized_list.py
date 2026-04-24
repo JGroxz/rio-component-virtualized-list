@@ -113,16 +113,24 @@ class VirtualizedList(rio.Component):
         )
 
     def _handle_scroll(self, msg: object) -> None:
-        """Handle scroll — recenter buffer around visible range."""
+        """Handle scroll — adopt the JS-reported visible range.
+
+        JS already applies its own overscan when computing ``[s, e]``,
+        so the backend simply mirrors that range. Re-centering on a
+        midpoint with a fixed buffer would clip the top rows whenever
+        the reported span exceeds ``2 * _BUFFER`` — visible as a
+        perpetually missing first row after a round-trip scroll.
+        """
         if not isinstance(msg, dict):
             return
-        s = msg.get("start", 0)
-        e = msg.get("end", _BUFFER * 2)
+        s = int(msg.get("start", 0))
+        e = int(msg.get("end", _BUFFER * 2))
 
-        if s >= self._vl_start and e <= self._vl_end:
+        new_start = max(0, s)
+        new_end = min(self.item_count, e)
+        if new_start == self._vl_start and new_end == self._vl_end:
             return
 
-        mid = (s + e) // 2
-        self._vl_start = max(0, mid - _BUFFER)
-        self._vl_end = min(self.item_count, mid + _BUFFER)
+        self._vl_start = new_start
+        self._vl_end = new_end
         self.force_refresh()
